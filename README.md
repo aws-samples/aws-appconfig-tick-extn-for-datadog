@@ -62,7 +62,7 @@ function.
 14. Replace the placeholder values for the API key and APP key with your keys
     from steps 8 and 9.
 15. Replace the site placeholder with the name of your Datadog Site (for example
-    `datadoghq.com`). See the [Datadoc docs](https://docs.datadoghq.com/getting_started/site/)
+    `datadoghq.com`). See the [Datadog docs](https://docs.datadoghq.com/getting_started/site/)
     for details.
 16. Choose **Save**
 
