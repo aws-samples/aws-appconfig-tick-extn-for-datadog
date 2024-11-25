@@ -1,8 +1,10 @@
 # AWS AppConfig Deployment Tick Datadog Sample Extension
 
-This is a sample AWS AppConfig extension to show integrating the
-`AT_DEPLOYMENT_TICK` event with the Datadog API - that is, allowing AppConfig to
-check the state of a 3rd party monitor as a deployment runs.
+This is a sample AWS AppConfig
+[extension](https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions-about.html)
+to show integrating the `AT_DEPLOYMENT_TICK` event with the Datadog API - that
+is, allowing AppConfig to check the state of a 3rd party monitor as a
+deployment runs.
 
 The Lambda function is invoked regularly by AWS AppConfig during a deployment
 (including the baking period at the end), and calls the Datadog API to check
