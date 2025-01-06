@@ -103,28 +103,27 @@ class AppconfigTickExtnStack(Stack):
             apply_to_children=True,
         )
 
-        aws_appconfig.CfnExtension(
+        aws_appconfig.Extension(
             self,
             "tick_extn",
-            name="Sample Datadog Monitor Tick",
-            description="A sample Extension to watch Datadog Monitors during a deployment and roll back if they are not OK.",
-            actions={
-                "AT_DEPLOYMENT_TICK": [
-                    {
-                        "Name": "Sample Datadog Monitor Tick Action",
-                        "Description": "Deployment Tick action point",
-                        "RoleArn": appconfig_svc_role.role_arn,
-                        "Uri": function.function_arn,
-                    }
-                ]
-            },
-            parameters={
-                "MONITOR_IDS": aws_appconfig.CfnExtension.ParameterProperty(
-                    required=True,
-                    description="Comma-separated list of Datadog monitor IDs",
-                    dynamic=False,
+            actions=[
+                aws_appconfig.Action(
+                    action_points=[aws_appconfig.ActionPoint.AT_DEPLOYMENT_TICK],
+                    event_destination=aws_appconfig.LambdaDestination(
+                        cast(aws_lambda.IFunction, function)
+                    ),
+                    execution_role=cast(iam.IRole, appconfig_svc_role),
+                    description="Deployment Tick action point",
                 )
-            },
+            ],
+            description="A sample Extension to watch Datadog Monitors during a deployment and roll back if they are not OK.",
+            extension_name="Sample Datadog Monitor Tick",
+            parameters=[
+                aws_appconfig.Parameter.not_required(
+                    "MONITOR_IDS",
+                    description="Comma-separated list of Datadog monitor IDs",
+                )
+            ],
         )
 
         CfnOutput(
