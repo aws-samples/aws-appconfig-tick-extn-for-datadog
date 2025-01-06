@@ -46,7 +46,7 @@ class AppconfigTickExtnStack(Stack):
             self,
             "tick_fn",
             index="index.py",
-            runtime=aws_lambda.Runtime.PYTHON_3_12,
+            runtime=aws_lambda.Runtime.PYTHON_3_13,
             handler="lambda_handler",
             entry="lambda",
             bundling=aws_python.BundlingOptions(
